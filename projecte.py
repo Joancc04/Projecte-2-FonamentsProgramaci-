@@ -69,6 +69,8 @@ def importar_hotels(fitxer,IFS):
     except FileNotFoundError:
         print("fitxer no trobat")
 
+# ==============================
+
 class Barri():
     def __init__(self, nom, codi_districte):
         self.nom = nom
@@ -79,9 +81,12 @@ class Barri():
     def __str__(self):
         return f"{self.nom} (districte: {self.codi_districte})"
 
-llista = importar_hotels("hotels.csv", ";")
-for i in llista:
-    print(i.nom, i.codi_hotel,i.estrelles)
+#xecute
+# llista = importar_hotels("hotels.csv", ";")
+# for i in llista:
+#     print(i.nom, i.codi_hotel,i.estrelles)
+
+# ==============================
 
 class Districte():
     def __init__(self, nom, extensio, poblacio, llista_barris):
@@ -95,12 +100,42 @@ class Districte():
             raise TypeError ("extensio ha de ser un valor real positiu")
         
     def __str__(self):
-        return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {self.llista_barris}"
+        barris = ""
+        if self.llista_barris:
+            for x in self.llista_barris:
+                barris += x + ", "
+        else:
+            barris = "N/D"
+        print (barris)
+        return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {barris}"
         
+llista=["hola","que","tal","com","va"]        
+# print(Districte("Collsuspina", 500, 300, llista))
 
+#========================
 
+def mostrar_hotels(llista_hotels):
+    existence = False
+    for i in llista_hotels:
+        if isinstance(i, Hotel):
+            print(i)
+            existence = True
+    if not existence:
+        print("No hi ha hotels")
+
+def mostrar_menu():
+    print('''
+
+--- MENÚ PRINCIPAL ---
+1 - Veure hotels
+S - Sortir del programa    
+    ''')
+
+# print(vars(Hotel))
 
 #      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
-# h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
-# h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
-# print(h2)
+h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
+h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
+h3 = "holaquetal"
+asdf = ["h1", "h2", "hrywser"]
+mostrar_hotels(asdf)
