@@ -82,9 +82,9 @@ class Barri():
         return f"{self.nom} (districte: {self.codi_districte})"
 
 #xecute
-# llista = importar_hotels("hotels.csv", ";")
-# for i in llista:
-#     print(i.nom, i.codi_hotel,i.estrelles)
+llista = importar_hotels("hotels.csv", ";")
+for i in llista:
+    print(i.nom, i.codi_hotel,i.estrelles)
 
 # ==============================
 
@@ -109,7 +109,7 @@ class Districte():
         print (barris)
         return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {barris}"
         
-llista=["hola","que","tal","com","va"]        
+# llista=["hola","que","tal","com","va"]
 # print(Districte("Collsuspina", 500, 300, llista))
 
 #========================
@@ -134,8 +134,9 @@ S - Sortir del programa
 # print(vars(Hotel))
 
 #      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
-h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
-h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
-h3 = "holaquetal"
-asdf = ["h1", "h2", "hrywser"]
-mostrar_hotels(asdf)
+# h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
+# h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
+# h3 = "holaquetal"
+# asdf = [h1,h2,h3]
+# mostrar_hotels(asdf)
+
