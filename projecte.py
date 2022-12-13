@@ -1,5 +1,22 @@
 from math import *
+'''
+TO DO LIST:
+- Ex1 fet
+- Ex2 fet
+- Ex3 fet 
+- Ex4 fet
+- Ex5 a mitjes
+- Ex6 fet
+- Ex7
+- Ex8 
+- Ex9 fet
+- Ex10 fet
+- Ex11
+- Ex11 (main)
+'''
 
+
+#== EXERCICI 1 ==
 class Hotel():
     def __init__(self, nom, codi_hotel, carrer, numero, codi_barri, codi_postal, telefon, latitud, longitud, estrelles):
         self.nom = nom
@@ -45,6 +62,8 @@ class Hotel():
                 raise TypeError (f"{i[1]} ha de ser un valor real")
         return acos(sin(self.latitud) * sin(latitud) + cos(self.latitud) * cos(latitud) * cos(longitud - self.longitud)) * RADI_TERRA
 
+
+#== EXERCICI 2 ==
 def codi_in_llista_hotels(llista_hotels, codi_hotel):
     for i in llista_hotels:
         if codi_hotel == i.codi_hotel:
@@ -52,25 +71,30 @@ def codi_in_llista_hotels(llista_hotels, codi_hotel):
     else:
         return False
 
+
+#== EXERCICI 3 ==
 #IFS = Input Field Separator
 def importar_hotels(fitxer,IFS):
     llista_hotels=[]
     try:
         with open(fitxer, 'r') as file:
+            count = 0
             for linia in file:
-                linia = file.readline()
-                aux, carrer, numero, codi_barri, codi_postal, telefon, latitud, longitud, estrelles = linia.split(IFS)
-                llista= aux.split(" - ")
-                nom = llista[0]
-                codi_hotel = llista[-1]
-                if not codi_in_llista_hotels(llista_hotels, codi_hotel):
-                    llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, telefon, float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
+                if count != 0:
+                    linia = file.readline()
+                    aux, carrer, numero, codi_barri, codi_postal, telefon, latitud, longitud, estrelles = linia.split(IFS)
+                    llista= aux.split(" - ")
+                    nom = llista[0]
+                    codi_hotel = llista[-1]
+                    if not codi_in_llista_hotels(llista_hotels, codi_hotel):
+                        llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, telefon, float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
+                count+=1
         return llista_hotels
     except FileNotFoundError:
         print("fitxer no trobat")
 
-# ==============================
 
+#== EXERCICI 4 ==
 class Barri():
     def __init__(self, nom, codi_districte):
         self.nom = nom
@@ -81,13 +105,23 @@ class Barri():
     def __str__(self):
         return f"{self.nom} (districte: {self.codi_districte})"
 
-#xecute
-llista = importar_hotels("hotels.csv", ";")
-for i in llista:
-    print(i.nom, i.codi_hotel,i.estrelles)
+#== EXERCICI 5 ==
+def importar_barris(fitxer, IFS):
+    dictionary = {}
+    try:
+        with open(fitxer, "r") as file:
+            count = 0
+            if count != 0:
+                for line in file:
+                    line = file.readline()
+                    dictionary['']
+            count+=1
+    except FileNotFoundError:
+        print("Fitxer no trobat")
 
-# ==============================
 
+
+#== EXERCICI 6 ==
 class Districte():
     def __init__(self, nom, extensio, poblacio, llista_barris):
         self.nom = nom
@@ -109,11 +143,8 @@ class Districte():
         print (barris)
         return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {barris}"
         
-# llista=["hola","que","tal","com","va"]
-# print(Districte("Collsuspina", 500, 300, llista))
 
-#========================
-
+#== EXERCICI 9 ==
 def mostrar_hotels(llista_hotels):
     existence = False
     for i in llista_hotels:
@@ -123,6 +154,8 @@ def mostrar_hotels(llista_hotels):
     if not existence:
         print("No hi ha hotels")
 
+
+#== EXERCICI 10 ==
 def mostrar_menu():
     print('''
 
@@ -131,6 +164,16 @@ def mostrar_menu():
 S - Sortir del programa    
     ''')
 
+
+def main():
+    llista = importar_hotels("hotels.csv", ";")
+    for i in llista:
+        print(i.nom, i.codi_hotel,i.estrelles)
+    
+    # llista=["hola","que","tal","com","va"]
+    # print(Districte("Collsuspina", 500, 300, llista))
+
+main()
 # print(vars(Hotel))
 
 #      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles

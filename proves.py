@@ -94,10 +94,12 @@
 # print_names(venen, "venen")
 # print_names(no_venen, "no venen")
 # print_names(tard, "venen tard")
-paraula = ""
-llista=[]
-while paraula != " ":
-    paraula = input()
-    llista.append(paraula)
-llista.sort()
-print(llista)
+# paraula = ""
+# llista=[]
+# while paraula != " ":
+#     paraula = input()
+#     llista.append(paraula)
+# llista.sort()
+# print(llista)
+string = "hola"
+print(string.readline())
