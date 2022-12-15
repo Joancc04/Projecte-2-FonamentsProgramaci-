@@ -113,12 +113,15 @@ def importar_barris(fitxer, IFS):
     dictionary = {}
     try:
         with open(fitxer, "r") as file:
-            count = 0
-            if count != 0:
-                for line in file:
-                    line = file.readline()
-                    dictionary['']
-            count+=1
+            count=0
+            for line in file:
+                if count != 0:
+                    # print(line)
+                    # print(linia)
+                    linia = line[:-1].split(IFS)
+                    dictionary[linia[0]]=Barri(linia[2], int(linia[1]))
+                else:
+                    count+=1
     except FileNotFoundError:
         print("Fitxer no trobat")
 
