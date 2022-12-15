@@ -1,4 +1,5 @@
 from math import *
+import time
 '''
 TO DO LIST:
 [PART 1]
@@ -182,7 +183,8 @@ def importar_districtes(fitxer, IFS):
                     # print(line)
                     # print(linia)
                     linia = line[:-1].split(IFS)
-                    dictionary[int(linia[0])]=Districte(linia[1], float(linia[2]), int(linia[3]))
+                    int(linia[0])
+                    dictionary[linia[0]]=Districte(linia[1], float(linia[2]), int(linia[3]))
                     num+=1
                 else:
                     count+=1
@@ -195,15 +197,15 @@ def importar_districtes(fitxer, IFS):
 
 
 #== EXERCICI 8 ==
-def omplir_llista_barris(dict_barris, dict_disctrictes):
-    for i,j in dict_disctrictes.items():
-        if not j.llista_barris:
-            #versió sense list_comprehension
-            for k,h in dict_barris.items():
-                if h.codi_districte == j.codi_districte:
-                    j.llista_barris == h
-        else:
-            print("El diccionari de districtes ja conté informació dels barris")
+# def omplir_llista_barris(dict_barris, dict_disctrictes):
+#     for i,j in dict_disctrictes.items():
+#         if not j.llista_barris:
+#             #versió sense list_comprehension
+#             for k,h in dict_barris.items():
+#                 if h.codi_districte == j.codi_districte:
+#                     j.llista_barris == h
+#         else:
+#             print("El diccionari de districtes ja conté informació dels barris")
 
 
 #== EXERCICI 9 ==
@@ -220,32 +222,58 @@ def mostrar_hotels(llista_hotels):
 #== EXERCICI 10 ==
 def mostrar_menu():
     print('''
-
 --- MENÚ PRINCIPAL ---
 1 - Veure hotels
-2 - Veure hotels per estrelles 
-3 - Buscar hotels
-4 - Buscar hotel proper
 S - Sortir del programa 
- 
     ''')
 
 
 def main():
+    fitxer_barris = "barris.csv"
+    fitxer_districtes = "districtes.csv"
+    fitxer_hotels = "hotels.csv"
+    IFS = ";"
+    try:
+        barris = importar_barris(fitxer_barris, IFS)
+        districtes = importar_districtes(fitxer_districtes, IFS)
+        hotels = importar_hotels(fitxer_hotels, IFS)
+    except FileNotFoundError as e:
+        print("Error llegint fitxers:", e)
+    except Exception as e:
+        print("Error processant els fitxers:", e)
+    else:
+        # omplir_llista_barris(barris, districtes)
+        op = "a"
+        while op not in "Ss":
+            mostrar_menu()
+            op = input("Introdueix una de les opcions del menú: ")
+            if op == "1":
+                mostrar_hotels(hotels)
+            elif op in "Ss":
+                print("Sortint del programa")
+            else:
+                print("Opció no permesa")
+                time.sleep(0.5)
+
+        return 0
+    finally:
+        print("© Bernat Vidal i Joan Colillas")
+
+
+    
+
+def proves():
     llista = importar_hotels("hotels.csv", ";")
     for i in llista:
         print(i.nom, i.codi_hotel,i.estrelles)
-    
     # llista=["hola","que","tal","com","va"]
     # print(Districte("Collsuspina", 500, 300, llista))
+    # print(vars(Hotel))
+    #      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
+    # h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
+    # h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
+    # h3 = "holaquetal"
+    # asdf = [h1,h2,h3]
+    # mostrar_hotels(asdf)
 
 main()
-# print(vars(Hotel))
-
-#      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
-# h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
-# h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
-# h3 = "holaquetal"
-# asdf = [h1,h2,h3]
-# mostrar_hotels(asdf)
-

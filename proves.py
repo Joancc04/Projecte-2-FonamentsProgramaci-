@@ -28,12 +28,16 @@ try:
 except FileNotFoundError:
     print("Fitxer no trobat")
 
-print("diccionari:",dictionary)
+# print("diccionari:",dictionary)
 
 # print(Barri("La marina del port", 1))
 
-def print_dict(dictionary):
-    for i,j in dictionary.items():
-        print(f"{i}: {j}")
+# def print_dict(dictionary):
+#     for i,j in dictionary.items():
+#         print(f"{i}: {j}")
 
 
+a = "r"
+
+if a in "Ss":
+    print("dins")
