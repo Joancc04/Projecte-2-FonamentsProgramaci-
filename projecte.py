@@ -196,17 +196,22 @@ def importar_districtes(fitxer, IFS):
         print("Els codis han de ser nombres")
 
 
-#== EXERCICI 8 ==
-# def omplir_llista_barris(dict_barris, dict_disctrictes):
-#     for i,j in dict_disctrictes.items():
-#         if not j.llista_barris:
-#             #versió sense list_comprehension
-#             for k,h in dict_barris.items():
-#                 if h.codi_districte == j.codi_districte:
-#                     j.llista_barris == h
-#         else:
-#             print("El diccionari de districtes ja conté informació dels barris")
-
+# == EXERCICI 8 ==
+def omplir_llista_barris(dict_barris, dict_disctrictes):
+    for codi_barrio,i in dict_disctrictes.items():
+        # print(codi_barrio)
+        if not i.llista_barris:
+            count = 0
+            for key, object in dict_barris.items():
+                print(count," -  ",object.codi_districte, codi_barrio)
+                if object.codi_districte == codi_barrio:
+                    i.llista_barris = object
+                    break
+            print("Número de repeticions:", count)
+            count+=1
+        else:
+            print("El diccionari de districtes ja conté informació dels barris")
+    print("S'han omplert les llistes de barris correctament")
 
 #== EXERCICI 9 ==
 def mostrar_hotels(llista_hotels):
@@ -242,7 +247,7 @@ def main():
     except Exception as e:
         print("Error processant els fitxers:", e)
     else:
-        # omplir_llista_barris(barris, districtes)
+        omplir_llista_barris(barris, districtes)
         op = "a"
         while op not in "Ss":
             mostrar_menu()
