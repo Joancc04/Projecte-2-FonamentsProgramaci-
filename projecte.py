@@ -1,6 +1,7 @@
 from math import *
 '''
 TO DO LIST:
+[PART 1]
 - Ex1 fet
 - Ex2 fet
 - Ex3 fet 
@@ -11,11 +12,14 @@ TO DO LIST:
 - Ex8 
 - Ex9 fet
 - Ex10 fet
-- Ex11
 - Ex11 (main)
-hola
-que tal
-lskdnfkskmd
+
+[PART 2]
+- Ex1
+- Ex2
+- Ex3
+- Ex4
+- Ex5
 branca Joan
 '''
 
@@ -99,6 +103,8 @@ def importar_hotels(fitxer,IFS):
         return llista_hotels
     except FileNotFoundError:
         print("fitxer no trobat")
+    except TypeError:
+        print("Tipus de dada no correcte")
 
 
 #== EXERCICI 4 ==
@@ -111,6 +117,7 @@ class Barri():
 
     def __str__(self):
         return f"{self.nom} (districte: {self.codi_districte})"
+
 
 #== EXERCICI 5 ==
 def importar_barris(fitxer, IFS):
@@ -139,12 +146,11 @@ def importar_barris(fitxer, IFS):
 
 #== EXERCICI 6 ==
 class Districte():
-    llista_barris=[]
-    
     def __init__(self, nom, extensio, poblacio):
         self.nom = nom
         self.extensio = extensio
         self.poblacio = poblacio
+        self.llista_barris = []
         try:
             if not isinstance(poblacio, int) and poblacio < 0:
                 raise TypeError ("poblacio ha de ser un valor enter positiu")
@@ -192,9 +198,12 @@ def importar_districtes(fitxer, IFS):
 def omplir_llista_barris(dict_barris, dict_disctrictes):
     for i,j in dict_disctrictes.items():
         if not j.llista_barris:
-            pass
-
-
+            #versió sense list_comprehension
+            for k,h in dict_barris.items():
+                if h.codi_districte == j.codi_districte:
+                    j.llista_barris == h
+        else:
+            print("El diccionari de districtes ja conté informació dels barris")
 
 
 #== EXERCICI 9 ==
@@ -214,7 +223,11 @@ def mostrar_menu():
 
 --- MENÚ PRINCIPAL ---
 1 - Veure hotels
-S - Sortir del programa    
+2 - Veure hotels per estrelles 
+3 - Buscar hotels
+4 - Buscar hotel proper
+S - Sortir del programa 
+ 
     ''')
 
 

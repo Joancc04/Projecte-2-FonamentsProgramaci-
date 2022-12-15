@@ -28,7 +28,7 @@ try:
 except FileNotFoundError:
     print("Fitxer no trobat")
 
-# print("diccionari:",dictionary)
+print("diccionari:",dictionary)
 
 # print(Barri("La marina del port", 1))
 
