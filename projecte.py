@@ -16,7 +16,6 @@ TO DO LIST:
 hola
 que tal
 lskdnfkskmd
-branca Joan
 prova branca Bernat
 '''
 
