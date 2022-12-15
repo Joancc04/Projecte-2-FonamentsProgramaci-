@@ -34,21 +34,24 @@ class Hotel():
         self.longitud = longitud
         self.estrelles = estrelles
 
-        # == Comprovant variables tipus int ==
-        vars_int = [[self.numero, "numero"], [self.codi_barri, "codi_barri"], [self.estrelles, "estrelles"]]
-        for i in vars_int:
-            if not isinstance(i[0], int):
-                raise TypeError (f"{i[1]} ha de ser un valor enter positiu")
+        try:
+            # == Comprovant variables tipus int ==
+            vars_int = [[self.numero, "numero"], [self.codi_barri, "codi_barri"], [self.estrelles, "estrelles"]]
+            for i in vars_int:
+                if not isinstance(i[0], int):
+                    raise TypeError (f"{i[1]} ha de ser un valor enter positiu")
 
-        # == Comprovant variables tipus float ==
-        vars_float = [[self.latitud, "latitud"], [self.longitud, "longitud"]]
-        for i in vars_float:
-            if not isinstance(i[0], float):
-                raise TypeError (f"{i[1]} ha de ser un valor real")
+            # == Comprovant variables tipus float ==
+            vars_float = [[self.latitud, "latitud"], [self.longitud, "longitud"]]
+            for i in vars_float:
+                if not isinstance(i[0], float):
+                    raise TypeError (f"{i[1]} ha de ser un valor real")
 
-        # == Comprovant estrelles entre 1 i 5 ==
-        if self.estrelles not in range(1,6):
-            raise ValueError ("estrelles ha de ser un valor entre 1 i 5")
+            # == Comprovant estrelles entre 1 i 5 ==
+            if self.estrelles not in range(1,6):
+                raise ValueError ("estrelles ha de ser un valor entre 1 i 5")
+        except ValueError as e:
+            print(e)
 
     def __str__(self):
         return f"{self.nom} ({self.codi_hotel}) {self.carrer},{self.numero} {self.codi_postal} (barri: {self.codi_barri}) {self.telefon} ({self.latitud},{self.longitud}) {self.estrelles} estrelles"
@@ -114,15 +117,17 @@ def importar_barris(fitxer, IFS):
     dictionary = {}
     try:
         with open(fitxer, "r") as file:
-            count = 0
-            if count != 0:
-                for line in file:
-                    line = file.readline()
-                    dictionary['']
-            count+=1
+            count=0
+            for line in file:
+                if count != 0:
+                    # print(line)
+                    # print(linia)
+                    linia = line[:-1].split(IFS)
+                    dictionary[linia[0]]=Barri(linia[2], int(linia[1]))
+                else:
+                    count+=1
     except FileNotFoundError:
         print("Fitxer no trobat")
-
 
 
 #== EXERCICI 6 ==
@@ -132,10 +137,13 @@ class Districte():
         self.extensio = extensio
         self.poblacio = poblacio
         self.llista_barris = llista_barris
-        if not isinstance(poblacio, int) and poblacio < 0:
-            raise TypeError ("poblacio ha de ser un valor enter positiu")
-        if not isinstance(extensio, float) and extensio < 0:
-            raise TypeError ("extensio ha de ser un valor real positiu")
+        try:
+            if not isinstance(poblacio, int) and poblacio < 0:
+                raise TypeError ("poblacio ha de ser un valor enter positiu")
+            if not isinstance(extensio, float) and extensio < 0:
+                raise TypeError ("extensio ha de ser un valor real positiu")
+        except TypeError as e:
+            print(e)
         
     def __str__(self):
         barris = ""
