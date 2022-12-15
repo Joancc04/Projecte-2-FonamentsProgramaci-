@@ -5,9 +5,9 @@ TO DO LIST:
 - Ex2 fet
 - Ex3 fet 
 - Ex4 fet
-- Ex5 a mitjes
+- Ex5 fet
 - Ex6 fet
-- Ex7
+- Ex7 fet
 - Ex8 
 - Ex9 fet
 - Ex10 fet
@@ -118,25 +118,33 @@ def importar_barris(fitxer, IFS):
     try:
         with open(fitxer, "r") as file:
             count=0
+            num=0
             for line in file:
                 if count != 0:
                     # print(line)
                     # print(linia)
                     linia = line[:-1].split(IFS)
+                    int(linia[0])
                     dictionary[linia[0]]=Barri(linia[2], int(linia[1]))
+                    num+=1
                 else:
                     count+=1
+            print("S'han importar correctament", num, "barris")
+        return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")
+    except TypeError:
+        print("El codi de barri ha de ser un nombre enter")
 
 
 #== EXERCICI 6 ==
 class Districte():
-    def __init__(self, nom, extensio, poblacio, llista_barris):
+    llista_barris=[]
+    
+    def __init__(self, nom, extensio, poblacio):
         self.nom = nom
         self.extensio = extensio
         self.poblacio = poblacio
-        self.llista_barris = llista_barris
         try:
             if not isinstance(poblacio, int) and poblacio < 0:
                 raise TypeError ("poblacio ha de ser un valor enter positiu")
@@ -154,7 +162,40 @@ class Districte():
             barris = "N/D"
         print (barris)
         return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {barris}"
-        
+
+
+#== EXERCICI 7 ==
+def importar_districtes(fitxer, IFS):
+    dictionary = {}
+    try:
+        with open(fitxer, "r") as file:
+            count=0
+            num=0
+            for line in file:
+                if count != 0:
+                    # print(line)
+                    # print(linia)
+                    linia = line[:-1].split(IFS)
+                    dictionary[int(linia[0])]=Districte(linia[1], float(linia[2]), int(linia[3]))
+                    num+=1
+                else:
+                    count+=1
+            print("S'han importat correctament", num, "districtes")
+        return dictionary
+    except FileNotFoundError:
+        print("Fitxer no trobat")
+    except TypeError:
+        print("Els codis han de ser nombres")
+
+
+#== EXERCICI 8 ==
+def omplir_llista_barris(dict_barris, dict_disctrictes):
+    for i,j in dict_disctrictes.items():
+        if not j.llista_barris:
+            pass
+
+
+
 
 #== EXERCICI 9 ==
 def mostrar_hotels(llista_hotels):
