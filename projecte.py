@@ -34,21 +34,24 @@ class Hotel():
         self.longitud = longitud
         self.estrelles = estrelles
 
-        # == Comprovant variables tipus int ==
-        vars_int = [[self.numero, "numero"], [self.codi_barri, "codi_barri"], [self.estrelles, "estrelles"]]
-        for i in vars_int:
-            if not isinstance(i[0], int):
-                raise TypeError (f"{i[1]} ha de ser un valor enter positiu")
+        try:
+            # == Comprovant variables tipus int ==
+            vars_int = [[self.numero, "numero"], [self.codi_barri, "codi_barri"], [self.estrelles, "estrelles"]]
+            for i in vars_int:
+                if not isinstance(i[0], int):
+                    raise TypeError (f"{i[1]} ha de ser un valor enter positiu")
 
-        # == Comprovant variables tipus float ==
-        vars_float = [[self.latitud, "latitud"], [self.longitud, "longitud"]]
-        for i in vars_float:
-            if not isinstance(i[0], float):
-                raise TypeError (f"{i[1]} ha de ser un valor real")
+            # == Comprovant variables tipus float ==
+            vars_float = [[self.latitud, "latitud"], [self.longitud, "longitud"]]
+            for i in vars_float:
+                if not isinstance(i[0], float):
+                    raise TypeError (f"{i[1]} ha de ser un valor real")
 
-        # == Comprovant estrelles entre 1 i 5 ==
-        if self.estrelles not in range(1,6):
-            raise ValueError ("estrelles ha de ser un valor entre 1 i 5")
+            # == Comprovant estrelles entre 1 i 5 ==
+            if self.estrelles not in range(1,6):
+                raise ValueError ("estrelles ha de ser un valor entre 1 i 5")
+        except ValueError as e:
+            print(e)
 
     def __str__(self):
         return f"{self.nom} ({self.codi_hotel}) {self.carrer},{self.numero} {self.codi_postal} (barri: {self.codi_barri}) {self.telefon} ({self.latitud},{self.longitud}) {self.estrelles} estrelles"
@@ -96,6 +99,8 @@ def importar_hotels(fitxer,IFS):
         return llista_hotels
     except FileNotFoundError:
         print("fitxer no trobat")
+    except TypeError:
+        print("Tipus de dada no correcte")
 
 
 #== EXERCICI 4 ==
@@ -109,33 +114,46 @@ class Barri():
     def __str__(self):
         return f"{self.nom} (districte: {self.codi_districte})"
 
+
 #== EXERCICI 5 ==
 def importar_barris(fitxer, IFS):
     dictionary = {}
     try:
         with open(fitxer, "r") as file:
-            count = 0
-            if count != 0:
-                for line in file:
-                    line = file.readline()
-                    dictionary['']
-            count+=1
+            count=0
+            num=0
+            for line in file:
+                if count != 0:
+                    # print(line)
+                    # print(linia)
+                    linia = line[:-1].split(IFS)
+                    int(linia[0])
+                    dictionary[linia[0]]=Barri(linia[2], int(linia[1]))
+                    num+=1
+                else:
+                    count+=1
+            print("S'han importar correctament", num, "barris")
+        return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")
-
+    except TypeError:
+        print("El codi de barri ha de ser un nombre enter")
 
 
 #== EXERCICI 6 ==
 class Districte():
-    def __init__(self, nom, extensio, poblacio, llista_barris):
+    def __init__(self, nom, extensio, poblacio):
         self.nom = nom
         self.extensio = extensio
         self.poblacio = poblacio
-        self.llista_barris = llista_barris
-        if not isinstance(poblacio, int) and poblacio < 0:
-            raise TypeError ("poblacio ha de ser un valor enter positiu")
-        if not isinstance(extensio, float) and extensio < 0:
-            raise TypeError ("extensio ha de ser un valor real positiu")
+        self.llista_barris = []
+        try:
+            if not isinstance(poblacio, int) and poblacio < 0:
+                raise TypeError ("poblacio ha de ser un valor enter positiu")
+            if not isinstance(extensio, float) and extensio < 0:
+                raise TypeError ("extensio ha de ser un valor real positiu")
+        except TypeError as e:
+            print(e)
         
     def __str__(self):
         barris = ""
@@ -146,7 +164,49 @@ class Districte():
             barris = "N/D"
         print (barris)
         return f"{self.nom} ({self.extensio} kms2, {self.poblacio} habitants) barris: {barris}"
-        
+
+
+#== EXERCICI 7 ==
+def importar_districtes(fitxer, IFS):
+    dictionary = {}
+    try:
+        with open(fitxer, "r") as file:
+            count=0
+            num=0
+            for line in file:
+                if count != 0:
+                    # print(line)
+                    # print(linia)
+                    linia = line[:-1].split(IFS)
+                    int(linia[0])
+                    dictionary[linia[0]]=Districte(linia[1], float(linia[2]), int(linia[3]))
+                    num+=1
+                else:
+                    count+=1
+            print("S'han importat correctament", num, "districtes")
+        return dictionary
+    except FileNotFoundError:
+        print("Fitxer no trobat")
+    except TypeError:
+        print("Els codis han de ser nombres")
+
+
+# == EXERCICI 8 ==
+def omplir_llista_barris(dict_barris, dict_disctrictes):
+    for codi_barrio,i in dict_disctrictes.items():
+        # print(codi_barrio)
+        if not i.llista_barris:
+            count = 0
+            for key, object in dict_barris.items():
+                print(count," -  ",object.codi_districte, codi_barrio)
+                if object.codi_districte == codi_barrio:
+                    i.llista_barris = object
+                    break
+            print("Número de repeticions:", count)
+            count+=1
+        else:
+            print("El diccionari de districtes ja conté informació dels barris")
+    print("S'han omplert les llistes de barris correctament")
 
 #== EXERCICI 9 ==
 def mostrar_hotels(llista_hotels):
@@ -162,28 +222,84 @@ def mostrar_hotels(llista_hotels):
 #== EXERCICI 10 ==
 def mostrar_menu():
     print('''
-
 --- MENÚ PRINCIPAL ---
 1 - Veure hotels
-S - Sortir del programa    
+S - Sortir del programa 
     ''')
+#== PART 2 ==
+#== EXERCICI 1 ==
+### EXERCICI 1 ###
+def ordenar_per_estrelles(llista_hotels):
+    ll_hotels=llista_hotels.copy()
+    ll_hotels.sort(key=lambda x: x[9])
+    return ll_hotels
 
+### EXERCICI 2 ###
+def mostrar_noms_hotels(llista_hotels):
+    for i in llista_hotels:
+        print(Hotel(nom),"(",Hotel(codi_hotel),")")
+        
+### EXERCICI 3 ###
+def buscar_per_nom(llista_hotels,nom_hotel):
+    ll_buscar_hotels=[]
+    [ll_buscar_hotels.append(Hotel()) for x in llista_hotels if nom_hotel.upper() in Hotel(nom).upper()]
+    return ll_buscar_hotels
+
+## EXERCICI 4 ###
+def buscar_per_estrelles(llista_hotels,n_estrelles):
+    #ll_buscar_estrelles=[]
+    #[ll_buscar_estrelles.append(Hotel()) for x in llista_hotels if n_estrelles==Hotel(estrelles)]
+    #return ll_buscar_estrelles
+
+    ll_buscar_estrelles=list(filter(lambda x: x[9]==n_estrelles,llista_hotels))
+    return ll_buscar_estrelles
 
 def main():
+    fitxer_barris = "barris.csv"
+    fitxer_districtes = "districtes.csv"
+    fitxer_hotels = "hotels.csv"
+    IFS = ";"
+    try:
+        barris = importar_barris(fitxer_barris, IFS)
+        districtes = importar_districtes(fitxer_districtes, IFS)
+        hotels = importar_hotels(fitxer_hotels, IFS)
+    except FileNotFoundError as e:
+        print("Error llegint fitxers:", e)
+    except Exception as e:
+        print("Error processant els fitxers:", e)
+    else:
+        omplir_llista_barris(barris, districtes)
+        op = "a"
+        while op not in "Ss":
+            mostrar_menu()
+            op = input("Introdueix una de les opcions del menú: ")
+            if op == "1":
+                mostrar_hotels(hotels)
+            elif op in "Ss":
+                print("Sortint del programa")
+            else:
+                print("Opció no permesa")
+                time.sleep(0.5)
+
+        return 0
+    finally:
+        print("© Bernat Vidal i Joan Colillas")
+
+
+    
+
+def proves():
     llista = importar_hotels("hotels.csv", ";")
     for i in llista:
         print(i.nom, i.codi_hotel,i.estrelles)
-    
     # llista=["hola","que","tal","com","va"]
     # print(Districte("Collsuspina", 500, 300, llista))
+    # print(vars(Hotel))
+    #      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
+    # h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
+    # h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
+    # h3 = "holaquetal"
+    # asdf = [h1,h2,h3]
+    # mostrar_hotels(asdf)
 
 main()
-# print(vars(Hotel))
-
-#      nom  , codi_hotel, carrer, numero, codi_barri,codi_postal,telf,latitud,longitud,estrelles
-# h1 = Hotel("Joan",      1,        "2",    12,        12,     12,     12,   12.5,      12.5,       4)
-# h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
-# h3 = "holaquetal"
-# asdf = [h1,h2,h3]
-# mostrar_hotels(asdf)
-
