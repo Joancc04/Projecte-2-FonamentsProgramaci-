@@ -1,4 +1,4 @@
-from projecte import * 
+from part1 import * 
 
 '''
 TO DO LIST:
@@ -6,13 +6,18 @@ TO DO LIST:
 - Ex2 
 - Ex3
 - Ex4
-- Ex5
+- Ex5 fet
 - Ex6
 - Ex7
 - Ex8 (main)
 '''
+# == Exercici 1 == 
+def ordenar_per_estrelles(l_hotels):
+    pass
+
+
 # == Exercici 2 ==
-def mostrar_noms_hotels(llista_hotels):
+def mostrar_noms_hotels(l_hotels):
     pass
 
 
@@ -37,17 +42,34 @@ def buscar_hotels(llista_hotels):
         else:
             print("No s'han trobat hotels")
     elif op == 2:
-        try:
-            num_estrelles = int(input("Escriu el nombre d'estrelles: "))
-            while not isinstance(num_estrelles, int) and 1 > num_estrelles > 5:
+        while True:
+            try:
                 num_estrelles = int(input("Escriu el nombre d'estrelles: "))
-        except ValueError:
-            print("Error: el número d'estrelles ha de ser un valor enter")
-        else:
-            l_hotels = buscar_per_estrelles(llista_hotels)
-            if l_hotels:
-                print(f"S'han trobat {len(l_hotels)} hotels de {num_estrelles} estrelles")
+                if num_estrelles > 5 or num_estrelles < 1:
+                        raise Exception("Error: el nombre d'estrelles ha de ser entre 1 i 5")
+            except ValueError:
+                print("Error: el número d'estrelles ha de ser un valor enter")
+            except Exception as missatge:
+                print(missatge)
             else:
-                print("No s'han trobat hotels")
+                l_hotels = buscar_per_estrelles(llista_hotels)
+                if l_hotels:
+                    print(f"S'han trobat {len(l_hotels)} hotels de {num_estrelles} estrelles")
+                else:
+                    print("No s'han trobat hotels")
+                break
     else:
         print("Error: criteri de cerca no vàlid")
+
+# == Exercici 6 == 
+def hotel_mes_proper(l_hotels, latitud, longitud):
+    pass
+
+
+def mein():
+    l = ["hola", "que", "tal"]
+    buscar_hotels(l)
+    return 0
+
+
+mein()
