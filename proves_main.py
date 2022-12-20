@@ -10,3 +10,11 @@
 a = 5
 b = False
 print(f"El número {a} és {b}")
+
+def prova():
+    a = 5
+    b = 3
+    if a > 3:
+        return a
+    return b
+print(prova())

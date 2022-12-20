@@ -72,46 +72,11 @@ def buscar_hotels(llista_hotels):
 
 # == Exercici 6 == *****
 def hotel_mes_proper(l_hotels, latitud, longitud):
-    if type(Hotel) in l_hotels:
-        closest_hotel = ""
-        for hotels in l_hotels:
+    closest_hotel = ""
+    for hotels in l_hotels:
+        if type(hotels) is Hotel:
             if hotels.distancia() < Hotel.distancia(latitud, longitud):
                 closest_hotel = hotels
-        return closest_hotel.latitud, closest_hotel.longitud
-    else:
-        return None, None
-
-
-def main():
-    fitxer_barris = "barris.csv"
-    fitxer_districtes = "districtes.csv"
-    fitxer_hotels = "hotels.csv"
-    IFS = ";"
-    try:
-        barris = importar_barris(fitxer_barris, IFS)
-        districtes = importar_districtes(fitxer_districtes, IFS)
-        hotels = importar_hotels(fitxer_hotels, IFS)
-    except FileNotFoundError as e:
-        print("Error llegint fitxers:", e)
-    except Exception as e:
-        print("Error processant els fitxers:", e)
-    else:
-        omplir_llista_barris(barris, districtes)
-        op = "a"
-        
-        while op not in "Ss":
-            mostrar_menu()
-            op = input("Introdueix una de les opcions del menú: ")
-            if op == "1":
-                mostrar_hotels(hotels)
-            elif op in "Ss":
-                print("Sortint del programa")
-            else:
-                print("Opció no permesa")
-                time.sleep(0.5)
-    finally:
-        print("© Bernat Vidal i Joan Colillas")
-    
-    return 0
-
-main()
+        else:
+            return None, None
+    return closest_hotel

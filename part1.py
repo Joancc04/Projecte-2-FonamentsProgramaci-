@@ -215,11 +215,8 @@ def omplir_llista_barris(dict_barris, dict_districtes):
                 time.sleep(0.2)
             print('''
                 
-
             ''')
-                    
             # print(object_districte.llista_barris[-1])
-
     else:
         print("El diccionari de districtes ja conté informació dels barris")
     print("S'han omplert les llistes de barris correctament")
