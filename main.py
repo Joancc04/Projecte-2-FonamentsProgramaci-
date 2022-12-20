@@ -27,19 +27,36 @@ def main():
         # omplir_llista_barris(barris, districtes)
         # op = "a"
         # print(estrelles_per_barri(hotels, barris))
-        hola = estrelles_per_barri(hotels, barris)
-        for i,j in hola.items():
-            print(i,"-->", j)
-        print('''
+        # hola = estrelles_per_barri(hotels, barris)
+        # for i,j in hola.items():
+        #     print(i,"-->", j)
+        # print('''
         
-
-
-        ''')
-        
-        for i in hotels:
-            if i.codi_barri==48:
-                print("Hotel:", i.nom, "amb codi:",i.codi_barri)
+        # ''')
+        # for i in hotels:
+        #     if i.codi_barri in range(28,33):
+        #         print("Hotel:", i.nom, "amb codi:",i.codi_barri)
     
+        # dictionary = densitat_per_districte(hotels, barris, districtes)
+        # for i,j in dictionary.items():
+        #     print("Codi:", i, ". Num de hotels:",j)
+
+        # print(hotels[1].telefon)
+        # afegir_prefixe_int(hotels[1].telefon)
+        # print(hotels[1].telefon)
+
+        # print(hotels[0].telefon)
+        # afegir_prefixe_int(hotels[0])
+        # print(hotels[0].telefon)
+        modificar_telefon(hotels)
+        for i in hotels:
+            print(i.telefon)
+
+
+
+
+
+
         # === MAIN ===
         # while op not in "Ss":
         #     mostrar_menu()

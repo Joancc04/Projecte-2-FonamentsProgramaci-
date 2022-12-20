@@ -1,11 +1,15 @@
 # === PART 3 ===
 
+
+# == Exercici 1 ==
 def ordenar_per_nom(l_hotels):
     return list(sorted(l_hotels, key=lambda x: x.nom))
 
+# == Exercici 2 ==
 def carrers_amb_hotels(l_hotels):
     return list(sorted(set(object.carrer for object in l_hotels)))
 
+# == Exercici 3 ==
 def estrelles_per_barri(l_hotels, dict_barris):
     dictionary = {}
     for key, object in dict_barris.items():
@@ -16,5 +20,28 @@ def estrelles_per_barri(l_hotels, dict_barris):
         dictionary[object.nom]=estrelles
     return dictionary
 
+# == Exercici 4 ==
 def densitat_per_districte(l_hotels, dict_barris, dict_districtes):
-    pass
+    dictionary = {}
+    for codi_d, object_d in dict_districtes.items():
+        num_hotels = 0
+        for codi_b, object_b in dict_barris.items():
+            if int(codi_d) == int(object_b.codi_districte):
+                for hotel in l_hotels:
+                    if hotel.codi_barri == int(codi_b):
+                        num_hotels+=1
+        dictionary[codi_d]=num_hotels
+
+    return dictionary
+
+
+# == Exercici 5 ==
+def afegir_prefixe_int(object_hotel):
+    if object_hotel.telefon not in "+":
+        object_hotel.telefon = "+34" + object_hotel.telefon
+
+def modificar_telefon(l_hotels):
+    return map(afegir_prefixe_int, l_hotels)
+
+
+

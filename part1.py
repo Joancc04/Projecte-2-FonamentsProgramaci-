@@ -99,7 +99,7 @@ def importar_hotels(fitxer,IFS):
                     nom = llista[0]
                     codi_hotel = llista[-1]
                     if not codi_in_llista_hotels(llista_hotels, codi_hotel):
-                        llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, telefon, float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
+                        llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, str(telefon), float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
                 count+=1
         return llista_hotels
     except FileNotFoundError:
