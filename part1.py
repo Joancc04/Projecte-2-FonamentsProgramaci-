@@ -1,5 +1,8 @@
+# === PART 1 ===
+
 from math import *
 import time
+
 '''
 TO DO LIST:
 [PART 1]
@@ -14,14 +17,6 @@ TO DO LIST:
 - Ex9 fet
 - Ex10 fet
 - Ex11 (main)
-
-[PART 2]
-- Ex1
-- Ex2
-- Ex3
-- Ex4
-- Ex5
-branca Joan
 '''
 
 

@@ -37,9 +37,10 @@ def densitat_per_districte(l_hotels, dict_barris, dict_districtes):
 
 # == Exercici 5 ==
 def afegir_prefixe_int(object_hotel):
-    if object_hotel.telefon not in "+":
+    if object_hotel.telefon[0] != "+":
         object_hotel.telefon = "+34" + object_hotel.telefon
 
+# == Exercici 6 ==
 def modificar_telefon(l_hotels):
     return map(afegir_prefixe_int, l_hotels)
 

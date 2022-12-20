@@ -45,13 +45,22 @@ def main():
         # afegir_prefixe_int(hotels[1].telefon)
         # print(hotels[1].telefon)
 
-        # print(hotels[0].telefon)
-        # afegir_prefixe_int(hotels[0])
-        # print(hotels[0].telefon)
+        # print(hotels[5].telefon)
+        # afegir_prefixe_int(hotels[5])
+        # print(hotels[5].telefon)
         modificar_telefon(hotels)
         for i in hotels:
             print(i.telefon)
+        # ordenats = ordenar_per_estrelles(hotels)
+        # for i in ordenats:
+        #     print(i.estrelles)
+        # hotels_estrelles = buscar_per_estrelles(hotels, 2)
+        # for i in hotels_estrelles:
+        #     print(i.estrelles)
 
+        # nom_hotels = buscar_per_nom(hotels, "Hotel")
+        # for i in nom_hotels:
+        #     print(i.nom)
 
 
 

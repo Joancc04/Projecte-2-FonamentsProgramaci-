@@ -1,42 +1,36 @@
+# === PART 2 ===
 from part1 import * 
 
 '''
 TO DO LIST:
-- Ex1
-- Ex2 
-- Ex3
-- Ex4
+- Ex1 fet
+- Ex2 fet
+- Ex3 fet
+- Ex4 fet
 - Ex5 fet
-- Ex6
-- Ex7
+- Ex6 mig fet
+- Ex7 fet
 - Ex8 (main)
 '''
-### EXERCICI 1 ###
-def ordenar_per_estrelles(llista_hotels):
-    ll_hotels=llista_hotels.copy()
-    ll_hotels.sort(key=lambda x: x[9])
-    return ll_hotels
+# == Exercici 1 ==
+def ordenar_per_estrelles(l_hotels):
+    return sorted(l_hotels, key=lambda x: x.estrelles)
 
-### EXERCICI 2 ###
+
+# == Exercici 2 ==
 def mostrar_noms_hotels(llista_hotels):
     for i in llista_hotels:
         print(i.nom,"(",i.codi_hotel,")")
         
-### EXERCICI 3 ###
-def buscar_per_nom(llista_hotels,nom_hotel):
-    # ll_buscar_hotels=[]
-    # [ll_buscar_hotels.append(Hotel()) for x in llista_hotels if nom_hotel.upper() in Hotel(nom).upper()]
-    # return ll_buscar_hotels
-    pass
+# == Exercici 3 ==
+def buscar_per_nom(l_hotels,nom_hotel):
+    return list(filter(lambda x:nom_hotel.upper() in x.nom.upper(), l_hotels))
 
-## EXERCICI 4 ###
-def buscar_per_estrelles(llista_hotels,n_estrelles):
-    #ll_buscar_estrelles=[]
-    #[ll_buscar_estrelles.append(Hotel()) for x in llista_hotels if n_estrelles==Hotel(estrelles)]
-    #return ll_buscar_estrelles
 
-    ll_buscar_estrelles=list(filter(lambda x: x[9]==n_estrelles,llista_hotels))
-    return ll_buscar_estrelles
+# == Exercici 4 ==
+def buscar_per_estrelles(l_hotels,n_estrelles):
+    return list(filter(lambda x:x.estrelles==n_estrelles, l_hotels))
+
 
 # == Exercici 5 ==
 def buscar_hotels(llista_hotels):
