@@ -1,5 +1,6 @@
 from part1 import *
 from part2 import * 
+from part3 import *
 
 def main():
     fitxer_barris = "barris.csv"
@@ -15,15 +16,31 @@ def main():
     except Exception as e:
         print("Error processant els fitxers:", e)
     else:
+        # === PROVES ===
         # for object in hotels:
         #     print("Hotel:", object.nom, object.estrelles)
-        
-        llista_hola = sorted(hotels, key=lambda x: x.nom)
-        for i in llista_hola:
-            print(i.nom)        
+        # for i,j in barris.items():
+        #     print(i,j)
+        # llista_hola = sorted(hotels, key=lambda x: x.nom)
+        # for i in llista_hola:
+        #     print(i.nom)        
         # omplir_llista_barris(barris, districtes)
         # op = "a"
+        # print(estrelles_per_barri(hotels, barris))
+        hola = estrelles_per_barri(hotels, barris)
+        for i,j in hola.items():
+            print(i,"-->", j)
+        print('''
         
+
+
+        ''')
+        
+        for i in hotels:
+            if i.codi_barri==48:
+                print("Hotel:", i.nom, "amb codi:",i.codi_barri)
+    
+        # === MAIN ===
         # while op not in "Ss":
         #     mostrar_menu()
         #     op = input("Introdueix una de les opcions del menú: ")

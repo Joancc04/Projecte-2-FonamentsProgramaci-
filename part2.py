@@ -79,4 +79,4 @@ def hotel_mes_proper(l_hotels, latitud, longitud):
                 closest_hotel = hotels
         else:
             return None, None
-    return closest_hotel
+    return closest_hotel, closest_hotel.distancia()
