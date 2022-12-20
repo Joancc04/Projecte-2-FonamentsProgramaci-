@@ -249,37 +249,7 @@ S - Sortir del programa
     ''')
 
 
-def main():
-    fitxer_barris = "barris.csv"
-    fitxer_districtes = "districtes.csv"
-    fitxer_hotels = "hotels.csv"
-    IFS = ";"
-    try:
-        barris = importar_barris(fitxer_barris, IFS)
-        districtes = importar_districtes(fitxer_districtes, IFS)
-        hotels = importar_hotels(fitxer_hotels, IFS)
-    except FileNotFoundError as e:
-        print("Error llegint fitxers:", e)
-    except Exception as e:
-        print("Error processant els fitxers:", e)
-    else:
-        omplir_llista_barris(barris, districtes)
-        op = "a"
-        
-        while op not in "Ss":
-            mostrar_menu()
-            op = input("Introdueix una de les opcions del menú: ")
-            if op == "1":
-                mostrar_hotels(hotels)
-            elif op in "Ss":
-                print("Sortint del programa")
-            else:
-                print("Opció no permesa")
-                time.sleep(0.5)
-    finally:
-        print("© Bernat Vidal i Joan Colillas")
-    
-    return 0
+
 
     
 
@@ -295,6 +265,4 @@ def proves():
     # h2 = Hotel("Hotel H10 Itaca", "HB-004151", "Roma",    22, 9,     8015,     932265594,   41.381193,      2.145467,       4)
     # h3 = "holaquetal"
     # asdf = [h1,h2,h3]
-    # mostrar_hotels(asdf)
-
-# main()
+    # mostrar_hotels(asdf)A

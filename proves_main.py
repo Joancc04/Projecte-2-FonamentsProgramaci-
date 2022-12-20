@@ -7,3 +7,6 @@
 # except ValueError as a:
 #     print(a)
 
+a = 5
+b = False
+print(f"El número {a} és {b}")

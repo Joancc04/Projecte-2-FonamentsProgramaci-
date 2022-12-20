@@ -11,24 +11,32 @@ TO DO LIST:
 - Ex7
 - Ex8 (main)
 '''
-# == Exercici 1 == 
-def ordenar_per_estrelles(l_hotels):
+### EXERCICI 1 ###
+def ordenar_per_estrelles(llista_hotels):
+    ll_hotels=llista_hotels.copy()
+    ll_hotels.sort(key=lambda x: x[9])
+    return ll_hotels
+
+### EXERCICI 2 ###
+def mostrar_noms_hotels(llista_hotels):
+    for i in llista_hotels:
+        print(i.nom,"(",i.codi_hotel,")")
+        
+### EXERCICI 3 ###
+def buscar_per_nom(llista_hotels,nom_hotel):
+    # ll_buscar_hotels=[]
+    # [ll_buscar_hotels.append(Hotel()) for x in llista_hotels if nom_hotel.upper() in Hotel(nom).upper()]
+    # return ll_buscar_hotels
     pass
 
+## EXERCICI 4 ###
+def buscar_per_estrelles(llista_hotels,n_estrelles):
+    #ll_buscar_estrelles=[]
+    #[ll_buscar_estrelles.append(Hotel()) for x in llista_hotels if n_estrelles==Hotel(estrelles)]
+    #return ll_buscar_estrelles
 
-# == Exercici 2 ==
-def mostrar_noms_hotels(l_hotels):
-    pass
-
-
-# == Exercici 3 ==
-def buscar_per_nom(l_hotels, nom_hotel):
-    pass
-
-
-# == Exercici 4 == 
-def buscar_per_estrelles():
-    pass
+    ll_buscar_estrelles=list(filter(lambda x: x[9]==n_estrelles,llista_hotels))
+    return ll_buscar_estrelles
 
 # == Exercici 5 ==
 def buscar_hotels(llista_hotels):
@@ -38,6 +46,7 @@ def buscar_hotels(llista_hotels):
         l_hotels = buscar_per_nom(nom_hotel)
         if l_hotels:
             print(f"S'han trobat {len(l_hotels)} hotels amb aquest nom")
+            time.sleep(1)
             mostrar_noms_hotels(l_hotels)
         else:
             print("No s'han trobat hotels")
@@ -61,15 +70,48 @@ def buscar_hotels(llista_hotels):
     else:
         print("Error: criteri de cerca no vàlid")
 
-# == Exercici 6 == 
+# == Exercici 6 == *****
 def hotel_mes_proper(l_hotels, latitud, longitud):
-    pass
+    if type(Hotel) in l_hotels:
+        closest_hotel = ""
+        for hotels in l_hotels:
+            if hotels.distancia() < Hotel.distancia(latitud, longitud):
+                closest_hotel = hotels
+        return closest_hotel.latitud, closest_hotel.longitud
+    else:
+        return None, None
 
 
-def mein():
-    l = ["hola", "que", "tal"]
-    buscar_hotels(l)
+def main():
+    fitxer_barris = "barris.csv"
+    fitxer_districtes = "districtes.csv"
+    fitxer_hotels = "hotels.csv"
+    IFS = ";"
+    try:
+        barris = importar_barris(fitxer_barris, IFS)
+        districtes = importar_districtes(fitxer_districtes, IFS)
+        hotels = importar_hotels(fitxer_hotels, IFS)
+    except FileNotFoundError as e:
+        print("Error llegint fitxers:", e)
+    except Exception as e:
+        print("Error processant els fitxers:", e)
+    else:
+        omplir_llista_barris(barris, districtes)
+        op = "a"
+        
+        while op not in "Ss":
+            mostrar_menu()
+            op = input("Introdueix una de les opcions del menú: ")
+            if op == "1":
+                mostrar_hotels(hotels)
+            elif op in "Ss":
+                print("Sortint del programa")
+            else:
+                print("Opció no permesa")
+                time.sleep(0.5)
+    finally:
+        print("© Bernat Vidal i Joan Colillas")
+    
     return 0
 
-
-mein()
+main()
