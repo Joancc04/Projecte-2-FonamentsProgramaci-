@@ -30,7 +30,7 @@ def densitat_per_districte(l_hotels, dict_barris, dict_districtes):
                 for hotel in l_hotels:
                     if hotel.codi_barri == int(codi_b):
                         num_hotels+=1
-        dictionary[codi_d]=num_hotels
+        dictionary[codi_d]=num_hotels/object_d.extensio
 
     return dictionary
 
@@ -42,7 +42,10 @@ def afegir_prefixe_int(object_hotel):
 
 # == Exercici 6 ==
 def modificar_telefon(l_hotels):
-    return map(afegir_prefixe_int, l_hotels)
+    # La funció map no retorna els números amb +34 davant, per tant, fem servir el loop for tradicinal.
+    # return map(afegir_prefixe_int, l_hotels)
+    for hotels in l_hotels:
+        afegir_prefixe_int(hotels)
 
 
 

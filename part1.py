@@ -49,8 +49,10 @@ class Hotel():
 
             # == Comprovant estrelles entre 1 i 5 ==
             if self.estrelles not in range(1,6):
-                raise ValueError ("estrelles ha de ser un valor entre 1 i 5")
-        except ValueError as e:
+                raise Exception ("estrelles ha de ser un valor entre 1 i 5")
+        except TypeError as a:
+            print(a)
+        except Exception as e:
             print(e)
 
     def __str__(self):
@@ -64,10 +66,13 @@ class Hotel():
         RADI_TERRA = 6378.137
         latitud *= pi/180
         longitud *= pi/180
+        self.latitud *= pi/180
+        self.longitud *= pi/180
         for i in vars_float:
             if not isinstance(i[0], float):
                 raise TypeError (f"{i[1]} ha de ser un valor real")
-        return acos(sin(self.latitud) * sin(latitud) + cos(self.latitud) * cos(latitud) * cos(longitud - self.longitud)) * RADI_TERRA
+        # return acos(sin(self.latitud) * sin(latitud) + cos(self.latitud) * cos(latitud) * cos(longitud - self.longitud)) * RADI_TERRA
+        return acos(sin(latitud) * sin(self.latitud) + cos(latitud) * cos(self.latitud) * cos(self.longitud - longitud)) * RADI_TERRA
 
 
 #== EXERCICI 2 ==
@@ -159,7 +164,7 @@ class Districte():
         barris = ""
         if self.llista_barris:
             for x in self.llista_barris:
-                barris += x + ", "
+                barris += str(x) + ", "
         else:
             barris = "N/D"
         print (barris)
@@ -194,27 +199,18 @@ def importar_districtes(fitxer, IFS):
 # == EXERCICI 8 ==
 def omplir_llista_barris(dict_barris, dict_districtes):    
     check = False
-    for key, object in dict_districtes.items():
-        if object.llista_barris:
+    for key,i in dict_districtes.items():
+        if i.llista_barris:
             check = True
     if not check:
-        for null, object_barri in dict_barris.items():
-            for key_districtes, object_districte in dict_districtes.items():
-                print(object_barri.codi_districte, key_districtes)
-                if int(object_barri.codi_districte) == int(key_districtes):
-                    object_districte.llista_barris.append(dict_barris[key_districtes])
-                    # print(object_districte.llista_barris)
-                    break
-            for i in object_districte.llista_barris:
-                print(i, "a")
-                time.sleep(0.2)
-            print('''
-                
-            ''')
-            # print(object_districte.llista_barris[-1])
+        for codi_d, object_d in dict_districtes.items():
+            for codi_b, object_b in dict_barris.items():
+                if int(codi_d) == int(object_b.codi_districte):
+                    object_d.llista_barris.append(object_b)
+        print("S'han omplert les llistes de barris correctament")
     else:
         print("El diccionari de districtes ja conté informació dels barris")
-    print("S'han omplert les llistes de barris correctament")
+    
                 
 
 
@@ -232,12 +228,17 @@ def mostrar_hotels(llista_hotels):
 #== EXERCICI 10 ==
 def mostrar_menu():
     print('''
---- MENÚ PRINCIPAL ---
-1 - Veure hotels
-2 - Veure hotels per estrelles
-3 - Buscar hotels
-4 - Buscar hotel proper
-S - Sortir del programa 
+--- MENÚ PRINCIPAL --- 
+1 - Veure hotels 
+2 - Veure hotels per estrelles 
+3 - Buscar hotels 
+4 - Buscar hotel proper 
+5 - Llistat alfabètic d'hotels 
+6 - Carrers amb hotels 
+7 - Estadística per barris 
+8 - Estadística per districtes 
+9 - Internacionalitzar telèfons 
+S - Sortir del programa
     ''')
 
 
