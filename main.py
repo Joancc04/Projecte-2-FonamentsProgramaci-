@@ -106,7 +106,7 @@ def main():
             elif op == "7":
                 diccionari_b = estrelles_per_barri(hotels, barris)
                 for nom_b, l_estrelles in diccionari_b.items():
-                    print(f"El barri: {nom_b} té:\n- {l_estrelles[0]} hotels d'1 estrella\n- {l_estrelles[1]} hotels d'2 estrelles\n- {l_estrelles[2]} hotels d'3 estrelles\n- {l_estrelles[3]} hotels d'4 estrelles\n- {l_estrelles[4]} hotels d'5 estrelles\n")
+                    print(f"El barri: {nom_b} té:\n- {l_estrelles[0]} hotels d'1 estrella\n- {l_estrelles[1]} hotels d'2 estrelles\n- {l_estrelles[2]} hotels d'3 estrelles\n- {l_estrelles[3]} hotels d'4 estrelles\n- {l_estrelles[4]} hotels d'5 estrelles\nzz")
             elif op == "8":
                 densitat = densitat_per_districte(hotels, barris, districtes)
                 for codi_d, densitat in densitat.items():

@@ -13,7 +13,7 @@ TO DO LIST:
 - Ex5 fet
 - Ex6 fet
 - Ex7 fet
-- Ex8 
+- Ex8 fet
 - Ex9 fet
 - Ex10 fet
 - Ex11 (main)
