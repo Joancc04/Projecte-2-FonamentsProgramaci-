@@ -1,6 +1,17 @@
 # === PART 3 ===
 import time 
 
+'''
+TO DO LIST:
+[Part 3]
+- Ex1 fet 
+- Ex2 fet 
+- Ex3 fet 
+- Ex4 fet 
+- Ex5 fet 
+- Ex6 fet 
+'''
+
 # == Exercici 1 ==
 def ordenar_per_nom(l_hotels):
     return list(sorted(l_hotels, key=lambda x: x.nom))
@@ -48,12 +59,5 @@ def modificar_telefon(l_hotels):
         afegir_prefixe_int(hotels)
 
 
-def delay(condition, num):
-    if condition:
-        time.sleep(num)
-
 def continuar():
     op = input("Prem enter per continuar: ")
-
-
-

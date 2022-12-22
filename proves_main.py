@@ -63,4 +63,5 @@ def distancia(latitud, longitud):
         else:
             return acos(sin(latitud) * sin(latitud) + cos(latitud) * cos(latitud) * cos(longitud - longitud)) * RADI_TERRA
 
-distancia(41.3333, True)
+llista = ["hola", "que" , "tal", "joan", "bernat", "uab", "que"]
+print(list(sorted(set(llista))))

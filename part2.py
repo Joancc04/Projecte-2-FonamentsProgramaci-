@@ -4,12 +4,13 @@ from part3 import *
 
 '''
 TO DO LIST:
+[Part 2]
 - Ex1 fet
 - Ex2 fet
 - Ex3 fet
 - Ex4 fet
 - Ex5 fet
-- Ex6 mig fet
+- Ex6 fet
 - Ex7 fet
 - Ex8 (main)
 '''
@@ -43,7 +44,6 @@ def buscar_hotels(llista_hotels):
             print(f"S'han trobat {len(l_hotels)} hotels amb aquest nom")
             continuar()
             mostrar_noms_hotels(l_hotels)
-            delay(False, 1.5)
         else:
             print("No s'han trobat hotels")
     elif op == "2":
@@ -62,7 +62,6 @@ def buscar_hotels(llista_hotels):
                     print(f"S'han trobat {len(l_hotels)} hotels de {num_estrelles} estrelles")
                     continuar()
                     mostrar_noms_hotels(l_hotels)
-                    delay(False, 1.5)
                 else:
                     print("No s'han trobat hotels")
                 break
@@ -73,17 +72,15 @@ def buscar_hotels(llista_hotels):
 def hotel_mes_proper(l_hotels, latitud, longitud):
     distancies = []
     noms = []
-    count = 0
     # print(len(l_hotels))
     for hotels in l_hotels:
         if type(hotels) is Hotel:
-            count+=1
             distancies.append(hotels.distancia(latitud, longitud))
             noms.append(hotels.nom)
         else:
             return None, None
-    for i in zip(distancies, noms):
-        print(i)
+    # for item in zip(distancies, noms):
+    #     print(item)
     # print(len(noms), len(distancies))
-    print(noms[distancies.index(min(distancies))], min(distancies))
+    # print(noms[distancies.index(min(distancies))], min(distancies))
     return noms[distancies.index(min(distancies))], min(distancies)

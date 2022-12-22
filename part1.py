@@ -59,7 +59,7 @@ class Hotel():
 
     def __gt__(self, altre_hotel):
         return self.estrelles > altre_hotel.estrelles
-
+    
     def distancia(self, latitud, longitud):
         try:
             vars_float=[[latitud,"latitud"],[longitud,"longitud"]]
