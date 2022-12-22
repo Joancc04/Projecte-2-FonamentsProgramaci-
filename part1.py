@@ -88,6 +88,7 @@ def codi_in_llista_hotels(llista_hotels, codi_hotel):
 #IFS = Input Field Separator
 def importar_hotels(fitxer,IFS):
     llista_hotels=[]
+    num_hotels = 0
     try:
         with open(fitxer, 'r') as file:
             count = 0
@@ -99,8 +100,10 @@ def importar_hotels(fitxer,IFS):
                     nom = llista[0]
                     codi_hotel = llista[-1]
                     if not codi_in_llista_hotels(llista_hotels, codi_hotel):
+                        num_hotels+=1
                         llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, str(telefon), float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
                 count+=1
+            print("S'han importat", num_hotels, "hotels correctament.")
         return llista_hotels
     except FileNotFoundError:
         print("fitxer no trobat")
@@ -137,7 +140,8 @@ def importar_barris(fitxer, IFS):
                     num+=1
                 else:
                     count+=1
-            print("S'han importar correctament", num, "barris")
+            print("S'han importat",num,"barris correctament")
+            
         return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")
@@ -188,7 +192,7 @@ def importar_districtes(fitxer, IFS):
                     num+=1
                 else:
                     count+=1
-            print("S'han importat correctament", num, "districtes")
+            print("S'han importat", num, "districtes correctament")
         return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")
@@ -212,8 +216,6 @@ def omplir_llista_barris(dict_barris, dict_districtes):
         print("El diccionari de districtes ja conté informació dels barris")
     
                 
-
-
 #== EXERCICI 9 ==
 def mostrar_hotels(llista_hotels):
     existence = False

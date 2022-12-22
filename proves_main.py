@@ -26,15 +26,22 @@ import math
 # print(len(l))
 # biseccio(l, 400)
 
-def hola(n, n2):
-    llista = []
-    nom = []
-    for i in range(0,11):
-        llista.append(n)
-        nom.append()
-    return min(llista)
+# def hola(n, n2):
+#     llista = []
+#     nom = []
+#     for i in range(0,11):
+#         llista.append(n)
+#         nom.append()
+#     return min(llista)
 
-l = [1,2,3]
-print(l)
-l = []
-print(l)
+# l = [1,2,3]
+# print(l)
+# l = []
+# print(l)
+
+def majusculues(l):
+    out = [x.upper() for x in l]
+    return out
+
+l = ["hola", "liuh", "tal"]
+print(majusculues(l))

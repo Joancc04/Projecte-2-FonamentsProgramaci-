@@ -1,0 +1,57 @@
+# === PROVES ===
+        # for object in hotels:
+        #     print("Hotel:", object.nom, object.estrelles)
+        # for i,j in barris.items():
+        #     print(i,j)
+        # llista_hola = sorted(hotels, key=lambda x: x.nom)
+        # for i in llista_hola:
+        #     print(i.nom)        
+        # omplir_llista_barris(barris, districtes)
+        # op = "a"
+        # print(estrelles_per_barri(hotels, barris))
+        # hola = estrelles_per_barri(hotels, barris)
+        # for i,j in hola.items():
+        #     print(i,"-->", j)
+        # print('''
+        
+        # ''')
+        # for i in hotels:
+        #     if i.codi_barri in range(28,33):
+        #         print("Hotel:", i.nom, "amb codi:",i.codi_barri)
+    
+        # dictionary = densitat_per_districte(hotels, barris, districtes)
+        # for i,j in dictionary.items():
+        #     print("Codi:", i, ". Num de hotels:",j)
+
+        # print(hotels[1].telefon)
+        # afegir_prefixe_int(hotels[1].telefon)
+        # print(hotels[1].telefon)
+
+        # print(hotelDELAY].telefon)
+        # afegir_prefixe_int(hotelDELAY])
+        # print(hotelDELAY].telefon)
+        # modificar_telefon(hotels)
+        # for i in hotels:
+        #     print(i.telefon)
+        # ordenats = ordenar_per_estrelles(hotels)
+        # for i in ordenats:
+        #     print(i.estrelles)
+        # hotels_estrelles = buscar_per_estrelles(hotels, 2)
+        # for i in hotels_estrelles:
+        #     print(i.estrelles)
+
+        # nom_hotels = buscar_per_nom(hotels, "Hotel")
+        # for i in nom_hotels:
+        #     print(i.nom)
+        # omplir_llista_barris(barris, districtes)
+        # for key, object in districtes.items():
+        #     print(object.llista_barris)
+        #     print('''
+        
+        #     ''')
+        # latitud = float(input("Latitud: "))
+        # longitud = float(input("Longitud: "))
+        # latitud = 41414013/1000000
+        # longitud = 2177888/1000000
+        # nom, dist = hotel_mes_proper(hotels, latitud, longitud)
+        # print(nom, "a ", dist)
