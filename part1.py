@@ -61,17 +61,21 @@ class Hotel():
         return self.estrelles > altre_hotel.estrelles
 
     def distancia(self, latitud, longitud):
-        vars_float=[[latitud,"latitud"],[longitud,"longitud"]]
-        RADI_TERRA = 6378.137
-        latitud *= pi/180
-        longitud *= pi/180
-        self.latitud *= pi/180
-        self.longitud *= pi/180
-        for i in vars_float:
-            if not isinstance(i[0], float):
-                raise TypeError (f"{i[1]} ha de ser un valor real")
+        try:
+            vars_float=[[latitud,"latitud"],[longitud,"longitud"]]
+            RADI_TERRA = 6378.137
+            latitud *= pi/180
+            longitud *= pi/180
+            self.latitud *= pi/180
+            self.longitud *= pi/180
+            for i in vars_float:
+                if not isinstance(i[0], float):
+                    raise TypeError (f"{i[1]} ha de ser un valor real")
         # return acos(sin(self.latitud) * sin(latitud) + cos(self.latitud) * cos(latitud) * cos(longitud - self.longitud)) * RADI_TERRA
-        return acos(sin(latitud) * sin(self.latitud) + cos(latitud) * cos(self.latitud) * cos(self.longitud - longitud)) * RADI_TERRA
+        except ValueError as message:
+            print(message)
+        else:
+            return acos(sin(latitud) * sin(self.latitud) + cos(latitud) * cos(self.latitud) * cos(self.longitud - longitud)) * RADI_TERRA
 
 
 #== EXERCICI 2 ==

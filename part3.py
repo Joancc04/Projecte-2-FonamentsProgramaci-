@@ -53,7 +53,7 @@ def delay(condition, num):
         time.sleep(num)
 
 def continuar():
-    op = input("Prem enter per continuar")
+    op = input("Prem enter per continuar: ")
 
 
 

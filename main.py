@@ -53,13 +53,17 @@ def main():
                 continuar()
             elif op == "6":
                 # delay(DELAY, delay_time)
-                print(f"Hi ha {len(carrers_amb_hotels(hotels))} carrers amb algún hotel: {carrers_amb_hotels(hotels)}")
+                # print(f"Hi ha {len(carrers_amb_hotels(hotels))} carrers amb algún hotel: {carrers_amb_hotels(hotels)}")
+                print(f"Hi ha {len(carrers_amb_hotels(hotels))} carrers amb algún hotel:")
+                delay(True, 2)
+                for hotel in carrers_amb_hotels(hotels):
+                    print(f"- {hotel}")
                 continuar()
             elif op == "7":
                 # delay(DELAY, delay_time)
                 diccionari_b = estrelles_per_barri(hotels, barris)
                 for nom_b, l_estrelles in diccionari_b.items():
-                    print(f"El barri: {nom_b} té:\n- {l_estrelles[0]} hotels d'1 estrella\n- {l_estrelles[1]} hotels d'2 estrelles\n- {l_estrelles[2]} hotels d'3 estrelles\n- {l_estrelles[3]} hotels d'4 estrelles\n- {l_estrelles[4]} hotels DELAY estrelles\nzz")
+                    print(f"El barri: {nom_b} té:\n- {l_estrelles[0]} hotels d'1 estrella\n- {l_estrelles[1]} hotels de 2 estrelles\n- {l_estrelles[2]} hotels de 3 estrelles\n- {l_estrelles[3]} hotels de 4 estrelles\n- {l_estrelles[4]} hotels de 5 estrelles\n")
                 continuar()
             elif op == "8":
                 # delay(DELAY, delay_time)

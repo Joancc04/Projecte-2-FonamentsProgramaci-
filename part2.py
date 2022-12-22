@@ -35,8 +35,8 @@ def buscar_per_estrelles(l_hotels,n_estrelles):
 
 # == Exercici 5 ==
 def buscar_hotels(llista_hotels):
-    op = int(input("Introdueix criteri de cerca (1 - per nom, 2 - per estrelles): "))
-    if op == 1:
+    op = input("Introdueix criteri de cerca (1 - per nom, 2 - per estrelles): ")
+    if op == "1":
         nom_hotel = input("Introdueix el nom de l'hotel: ")
         l_hotels = buscar_per_nom(llista_hotels, nom_hotel)
         if l_hotels:
@@ -46,7 +46,7 @@ def buscar_hotels(llista_hotels):
             delay(False, 1.5)
         else:
             print("No s'han trobat hotels")
-    elif op == 2:
+    elif op == "2":
         while True:
             try:
                 num_estrelles = int(input("Escriu el nombre d'estrelles: "))
@@ -82,7 +82,8 @@ def hotel_mes_proper(l_hotels, latitud, longitud):
             noms.append(hotels.nom)
         else:
             return None, None
-    print(count)
+    for i in zip(distancies, noms):
+        print(i)
     # print(len(noms), len(distancies))
     print(noms[distancies.index(min(distancies))], min(distancies))
     return noms[distancies.index(min(distancies))], min(distancies)

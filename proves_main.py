@@ -1,4 +1,4 @@
-import math
+from math import * 
 # try:
 #     a = int(input())
 #     if a < 0:
@@ -39,9 +39,28 @@ import math
 # l = []
 # print(l)
 
-def majusculues(l):
-    out = [x.upper() for x in l]
-    return out
+# def majusculues(l):
+#     out = [x.upper() for x in l]
+#     return out
 
-l = ["hola", "liuh", "tal"]
-print(majusculues(l))
+# l = ["hola", "liuh", "tal"]
+# print(majusculues(l))
+
+def distancia(latitud, longitud):
+        try:
+            ars_float=[[latitud,"latitud"],[longitud,"longitud"]]
+            RADI_TERRA = 6378.137
+            latitud *= pi/180
+            longitud *= pi/180
+            latitud *= pi/180
+            longitud *= pi/180
+            for i in ars_float:
+                if not isinstance(i[0], float):
+                    raise TypeError (f"{i[1]} ha de ser un valor real")
+        # return acos(sin(latitud) * sin(latitud) + cos(latitud) * cos(latitud) * cos(longitud - longitud)) * RADI_TERRA
+        except TypeError as e:
+            print(e)
+        else:
+            return acos(sin(latitud) * sin(latitud) + cos(latitud) * cos(latitud) * cos(longitud - longitud)) * RADI_TERRA
+
+distancia(41.3333, True)
