@@ -89,7 +89,7 @@ def codi_in_llista_hotels(llista_hotels, codi_hotel):
 
 #== EXERCICI 3 ==
 #IFS = Input Field Separator
-def importar_hotels(fitxer,IFS):
+def importar_hotels(fitxer,IFS, missatge):
     llista_hotels=[]
     num_hotels = 0
     try:
@@ -106,7 +106,8 @@ def importar_hotels(fitxer,IFS):
                         num_hotels+=1
                         llista_hotels.append(Hotel(nom, codi_hotel, carrer, int(numero), int(codi_barri), codi_postal, str(telefon), float(latitud)/1000000, float(longitud)/1000000, int(estrelles)))
                 count+=1
-            print("S'han importat", num_hotels, "hotels correctament.")
+            if missatge:
+                print("S'han importat", num_hotels, "hotels correctament.")
         return llista_hotels
     except FileNotFoundError:
         print("fitxer no trobat")
@@ -121,13 +122,12 @@ class Barri():
         self.codi_districte = codi_districte
         if not isinstance(self.codi_districte, int) and self.codi_districte < 0:
             raise TypeError ("codi_districte ha de ser un valor enter positiu")
-
     def __str__(self):
         return f"{self.nom} (districte: {self.codi_districte})"
 
 
 #== EXERCICI 5 ==
-def importar_barris(fitxer, IFS):
+def importar_barris(fitxer, IFS, message):
     dictionary = {}
     try:
         with open(fitxer, "r") as file:
@@ -135,16 +135,14 @@ def importar_barris(fitxer, IFS):
             num=0
             for line in file:
                 if count != 0:
-                    # print(line)
-                    # print(linia)
                     linia = line[:-1].split(IFS)
                     int(linia[0])
                     dictionary[linia[0]]=Barri(linia[2], int(linia[1]))
                     num+=1
                 else:
                     count+=1
-            print("S'han importat",num,"barris correctament")
-            
+            if message:
+                print("S'han importat",num,"barris correctament")
         return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")
@@ -179,7 +177,7 @@ class Districte():
 
 
 #== EXERCICI 7 ==
-def importar_districtes(fitxer, IFS):
+def importar_districtes(fitxer, IFS, message):
     dictionary = {}
     try:
         with open(fitxer, "r") as file:
@@ -195,7 +193,8 @@ def importar_districtes(fitxer, IFS):
                     num+=1
                 else:
                     count+=1
-            print("S'han importat", num, "districtes correctament")
+            if message:
+                print("S'han importat", num, "districtes correctament")
         return dictionary
     except FileNotFoundError:
         print("Fitxer no trobat")

@@ -2,18 +2,7 @@
 from part1 import * 
 from part3 import * 
 
-'''
-TO DO LIST:
-[Part 2]
-- Ex1 fet
-- Ex2 fet
-- Ex3 fet
-- Ex4 fet
-- Ex5 fet
-- Ex6 fet
-- Ex7 fet
-- Ex8 (main)
-'''
+
 # == Exercici 1 ==
 def ordenar_per_estrelles(l_hotels):
     return sorted(l_hotels, key=lambda x: x.estrelles)
@@ -24,6 +13,7 @@ def mostrar_noms_hotels(llista_hotels):
     for i in llista_hotels:
         print(i.nom,"(",i.codi_hotel,")")
         
+
 # == Exercici 3 ==
 def buscar_per_nom(l_hotels,nom_hotel):
     return list(filter(lambda x:nom_hotel.upper() in x.nom.upper(), l_hotels))
@@ -68,19 +58,15 @@ def buscar_hotels(llista_hotels):
     else:
         print("Error: criteri de cerca no vàlid")
 
+
 # == Exercici 6 == *****
 def hotel_mes_proper(l_hotels, latitud, longitud):
     distancies = []
     noms = []
-    # print(len(l_hotels))
     for hotels in l_hotels:
         if type(hotels) is Hotel:
             distancies.append(hotels.distancia(latitud, longitud))
             noms.append(hotels.nom)
         else:
             return None, None
-    # for item in zip(distancies, noms):
-    #     print(item)
-    # print(len(noms), len(distancies))
-    # print(noms[distancies.index(min(distancies))], min(distancies))
     return noms[distancies.index(min(distancies))], min(distancies)

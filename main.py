@@ -7,12 +7,10 @@ def main():
     fitxer_districtes = "districtes.csv"
     fitxer_hotels = "hotels.csv"
     IFS = ";"
-    DELAY = True
-    # delay_time = 0.2
     try:
-        hotels = importar_hotels(fitxer_hotels, IFS)
-        barris = importar_barris(fitxer_barris, IFS)
-        districtes = importar_districtes(fitxer_districtes, IFS)
+        hotels = importar_hotels(fitxer_hotels, IFS, True)
+        barris = importar_barris(fitxer_barris, IFS, True)
+        districtes = importar_districtes(fitxer_districtes, IFS, True)
         omplir_llista_barris(barris,districtes)
     except FileNotFoundError as e:
         print("Error llegint fitxers:", e)
@@ -21,13 +19,15 @@ def main():
     else:
         op = "a"
         while op not in "Ss": 
+            hotels = importar_hotels(fitxer_hotels, IFS, False)
+            barris = importar_barris(fitxer_barris, IFS, False)
+            districtes = importar_districtes(fitxer_districtes, IFS, False)
             mostrar_menu()
             op = input("Introdueix una de les opcions del menú: ")
             if op == "1":
                 mostrar_hotels(hotels)
                 continuar()
             elif op == "2":
-                # delay(DELAY, delay_time)
                 mostrar_hotels(ordenar_per_estrelles(hotels))
                 continuar()
             elif op == "3":
@@ -35,7 +35,6 @@ def main():
                 continuar()
             elif op == "4":
                 try:
-                    hotels = importar_hotels(fitxer_hotels, IFS)
                     latitud = float(input("Intorudeix el valor de la latitud: "))
                     longitud = float(input("Introdueix el valor de la longitud: "))
                     closest_hotel,distancia = hotel_mes_proper(hotels, latitud, longitud)
@@ -77,5 +76,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
