@@ -41,8 +41,9 @@ def buscar_hotels(llista_hotels):
         l_hotels = buscar_per_nom(llista_hotels, nom_hotel)
         if l_hotels:
             print(f"S'han trobat {len(l_hotels)} hotels amb aquest nom")
-            time.sleep(1)
+            continuar()
             mostrar_noms_hotels(l_hotels)
+            delay(False, 1.5)
         else:
             print("No s'han trobat hotels")
     elif op == 2:
@@ -59,8 +60,9 @@ def buscar_hotels(llista_hotels):
                 l_hotels = buscar_per_estrelles(llista_hotels, num_estrelles)
                 if l_hotels:
                     print(f"S'han trobat {len(l_hotels)} hotels de {num_estrelles} estrelles")
-                    time.sleep(1)
+                    continuar()
                     mostrar_noms_hotels(l_hotels)
+                    delay(False, 1.5)
                 else:
                     print("No s'han trobat hotels")
                 break
@@ -71,11 +73,16 @@ def buscar_hotels(llista_hotels):
 def hotel_mes_proper(l_hotels, latitud, longitud):
     distancies = []
     noms = []
+    count = 0
+    # print(len(l_hotels))
     for hotels in l_hotels:
         if type(hotels) is Hotel:
+            count+=1
             distancies.append(hotels.distancia(latitud, longitud))
             noms.append(hotels.nom)
         else:
             return None, None
-    # print(noms[distancies.index(min(distancies))], min(distancies))
+    print(count)
+    # print(len(noms), len(distancies))
+    print(noms[distancies.index(min(distancies))], min(distancies))
     return noms[distancies.index(min(distancies))], min(distancies)

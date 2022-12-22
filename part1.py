@@ -1,7 +1,6 @@
 # === PART 1 ===
 
 from math import *
-import time
 
 '''
 TO DO LIST:

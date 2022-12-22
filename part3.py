@@ -1,5 +1,5 @@
 # === PART 3 ===
-
+import time 
 
 # == Exercici 1 ==
 def ordenar_per_nom(l_hotels):
@@ -46,6 +46,14 @@ def modificar_telefon(l_hotels):
     # return map(afegir_prefixe_int, l_hotels)
     for hotels in l_hotels:
         afegir_prefixe_int(hotels)
+
+
+def delay(condition, num):
+    if condition:
+        time.sleep(num)
+
+def continuar():
+    op = input("Prem enter per continuar")
 
 
 
